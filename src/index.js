@@ -42,6 +42,7 @@ function updateCity(event) {
           <div class="time">${cityTime.format("H:mm")}
           </div>
         </div>`;
+
   let officeHours = cityTime.format("H");
   if (officeHours < 08) {
     citiesElement.classList.add("not-active");
