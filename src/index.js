@@ -7,9 +7,7 @@ function updateTime() {
 
     losAngelesDateElement.innerHTML =
       losAngelesTime.format("dddd, Do MMMM YYYY");
-    losAngelesTimeElement.innerHTML = losAngelesTime.format(
-      "h:mm:ss[<small>] A[</small>]"
-    );
+    losAngelesTimeElement.innerHTML = losAngelesTime.format("H:mm:ss");
 
     let parisElement = document.querySelector("#paris");
     let parisDateElement = parisElement.querySelector(".date");
@@ -17,9 +15,7 @@ function updateTime() {
     let parisTime = moment().tz("Europe/Paris");
 
     parisDateElement.innerHTML = parisTime.format("dddd, Do MMMM YYYY");
-    parisTimeElement.innerHTML = parisTime.format(
-      "h:mm:ss[<small>] A[</small>]"
-    );
+    parisTimeElement.innerHTML = parisTime.format("H:mm:ss");
 
     let tokyoElement = document.querySelector("#tokyo");
     let tokyoDateElement = tokyoElement.querySelector(".date");
@@ -27,9 +23,7 @@ function updateTime() {
     let tokyoTime = moment().tz("Asia/Tokyo");
 
     tokyoDateElement.innerHTML = tokyoTime.format("dddd, Do MMMM YYYY");
-    tokyoTimeElement.innerHTML = tokyoTime.format(
-      "h:mm:ss[<small>] A[</small>]"
-    );
+    tokyoTimeElement.innerHTML = tokyoTime.format("H:mm:ss");
   }
 }
 function updateCity(event) {
@@ -45,9 +39,13 @@ function updateCity(event) {
             <h2>${cityName}</h2>
             <div class="date">${cityTime.format("dddd, Do MMMM YYYY")}</div>
           </div>
-          <div class="time">${cityTime.format("h:mm")}
-          <small>${cityTime.format("A")}</small></div>
+          <div class="time">${cityTime.format("H:mm")}
+          </div>
         </div>`;
+  let officeHours = cityTime.format("H");
+  if (officeHours < 08) {
+    citiesElement.classList.add("not-active");
+  }
 }
 
 updateTime();
