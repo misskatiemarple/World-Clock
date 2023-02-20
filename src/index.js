@@ -51,13 +51,8 @@ function updateCity(event) {
   }
   let cityName = cityTimezone.replace("_", " ").split("/")[1];
   let cityTime = moment().tz(cityTimezone);
-  let citiesElement = document.querySelector("#cities");
 
-  let officeHours = cityTime.format("H");
-  if (officeHours < 8 || officeHours >= 18) {
-    citiesElement.style.backgroundColor = `#06237c`;
-    citiesElement.style.color = `white`;
-  }
+  let citiesElement = document.querySelector("#cities");
   citiesElement.innerHTML = `  <div class="city">
           <div>
             <h2>${cityName}</h2>
@@ -66,6 +61,11 @@ function updateCity(event) {
           <div class="time">${cityTime.format("H:mm")}
           </div>
         </div>`;
+  let officeHours = moment().tz(cityTimezone).format("H");
+  if (officeHours < 8 || officeHours >= 18) {
+    citiesElement.style.backgroundColor = `#06237c`;
+    citiesElement.style.color = `white`;
+  }
 }
 
 updateTime();
