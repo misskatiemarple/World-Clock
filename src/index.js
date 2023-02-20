@@ -10,8 +10,8 @@ function updateTime() {
     losAngelesTimeElement.innerHTML = losAngelesTime.format("H:mm:ss");
 
     let losAngelesOfficeHours = losAngelesTime.format("H");
-    if (losAngelesOfficeHours < 8) {
-      losAngelesElement.style.backgroundColor = `black`;
+    if (losAngelesOfficeHours < 8 || losAngelesOfficeHours >= 18) {
+      losAngelesElement.style.backgroundColor = `#06237c`;
       losAngelesElement.style.color = `white`;
     }
 
@@ -24,8 +24,8 @@ function updateTime() {
     parisTimeElement.innerHTML = parisTime.format("H:mm:ss");
 
     let parisOfficeHours = parisTime.format("H");
-    if (parisOfficeHours < 8) {
-      parisElement.style.backgroundColor = `black`;
+    if (parisOfficeHours < 8 || parisOfficeHours >= 18) {
+      parisElement.style.backgroundColor = `#06237c`;
       parisElement.style.color = `white`;
     }
 
@@ -38,8 +38,8 @@ function updateTime() {
     tokyoTimeElement.innerHTML = tokyoTime.format("H:mm:ss");
 
     let tokyoOfficeHours = tokyoTime.format("H");
-    if (tokyoOfficeHours < 8) {
-      tokyoElement.style.backgroundColor = `black`;
+    if (tokyoOfficeHours < 8 || tokyoOfficeHours >= 18) {
+      tokyoElement.style.backgroundColor = `#06237c`;
       tokyoElement.style.color = `white`;
     }
   }
@@ -53,6 +53,11 @@ function updateCity(event) {
   let cityTime = moment().tz(cityTimezone);
   let citiesElement = document.querySelector("#cities");
 
+  let officeHours = cityTime.format("H");
+  if (officeHours < 8 || officeHours >= 18) {
+    citiesElement.style.backgroundColor = `#06237c`;
+    citiesElement.style.color = `white`;
+  }
   citiesElement.innerHTML = `  <div class="city">
           <div>
             <h2>${cityName}</h2>
